@@ -1,0 +1,42 @@
+<div class="container">
+      <h1
+      class="text-center text-light p-3 mt-3"
+      style="background-color: rgb(25, 150, 9)"
+    >
+      {{ "SignUp Form" }}
+    </h1>
+    <form #userForm="ngForm">
+      <div class="form-group m-2">
+        <input type="text" pattern="^[a-zA-Z0-9_-]{8,15}$" [class.is-invalid]="name.invalid && name.touched" required name="userName" #name="ngModel" [(ngModel)]="userModel.userName" class="form-control" placeholder="Enter your name" />
+        <div *ngIf="name.errors && name.touched">
+          <small class="text-danger" *ngIf="name.errors['required']" >Username is Required</small>
+          <small class="text-danger" *ngIf="name.errors['pattern']">Username Must be Contains Capital and Small letters Without Spaces</small>
+        </div>
+      </div>
+      <div class="form-group m-2">
+        <input type="email"  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [class.is-invalid]="email.invalid && email.touched" required name="email" #email="ngModel" [(ngModel)]="userModel.email" class="form-control" placeholder="Enter your email" />
+        <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required and must be valid</small>
+      </div>
+      <div class="form-group m-2">
+        <input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$" [class.is-invalid]="password.invalid && password.touched" required name="password" #password="ngModel" [(ngModel)]="userModel.password" class="form-control" placeholder="Enter your password" />
+        <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is Required and must Contains Contains Capital, Small letters and special char</small>
+      </div>
+      <div class="form-group m-2">
+        <input type="password" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" required name="confirmPassword" #confirmPassword="ngModel" [(ngModel)]="userModel.confirmPassword" class="form-control" placeholder="Repeat your password" />
+        <small class="text-danger" [class.d-none]="confirmPassword.valid || confirmPassword.untouched">Confirmation is Required</small>
+      </div>
+      <div class="form-group m-2">
+        <label>Where you hear about us: </label>
+        <select class="custom-select m-3" [class.is-invalid]="selection.invalid && selection.touched" required #selection="ngModel" [(ngModel)]="userModel.selection" name="selection">
+            <option *ngFor="let topic of outTopic">
+              {{topic}}
+            </option>
+        </select>
+        <small class="text-danger" [class.d-none]="selection.valid || selection.untouched">Please Select One</small>
+      </div>
+      <br/>
+      <div class="text-center mb-3">
+        <input type="submit" [disabled]="!userForm.valid" class="btn btn-success" value="Submit" />
+      </div>
+    </form>
+  </div>

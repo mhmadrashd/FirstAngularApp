@@ -1,0 +1,31 @@
+
+<img src="../../assets/imgs/img.jpg" width="100%" height="400px" />
+
+<h1
+  class="text-center text-dark p-3 mt-3"
+  style="background-color: rgba(0, 0, 0, 0.2)"
+>
+  {{ "My name is Mohamed Rashed" }}
+</h1>
+
+<div class="input-group mb-3 mt-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">@</span>
+  </div>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Type here your name"
+    aria-label="Username"
+    aria-describedby="basic-addon1"
+    value="Gdo"
+    [(ngModel)]="name"
+  />
+</div>
+
+<h1
+  class="text-center text-light p-3"
+  style="background-color: rgba(20, 139, 4, 0.904)"
+>
+  {{ name || "Unknown" }}
+</h1>
